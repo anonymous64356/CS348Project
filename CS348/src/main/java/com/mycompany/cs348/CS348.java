@@ -5,6 +5,12 @@
 
 package com.mycompany.cs348;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author Joseph Murphy
@@ -12,6 +18,19 @@ package com.mycompany.cs348;
 public class CS348 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://104.197.34.123/hospital?user=test&password=test");
+            ResultSet result = conn.createStatement().executeQuery("SELECT * FROM Medicine");
+            while (result.next())
+            System.out.printf("Name: %s, ID: %d\n", result.getString("Name"), result.getInt("MedicineID"));
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        } catch (Exception e) {
+            System.out.println("bummer");
+        }
     }
 }

@@ -22,9 +22,9 @@ public class CS348 {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:mysql://104.197.34.123/hospital?user=test&password=test");
-            ResultSet result = conn.createStatement().executeQuery("SELECT * FROM Medicine");
+            ResultSet result = conn.createStatement().executeQuery("SELECT * FROM medicine");
             while (result.next())
-            System.out.printf("Name: %s, ID: %d\n", result.getString("Name"), result.getInt("MedicineID"));
+            System.out.printf("Name: %s, ID: %d\n", result.getString("name"), result.getInt("medicineID"));
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());

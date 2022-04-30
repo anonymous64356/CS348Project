@@ -17,12 +17,13 @@ import java.sql.SQLException;
  */
 public class CS348 {
 
+    private static Connection conn = null;
+    
     public static void main(String[] args) {
-        Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://104.197.34.123/hospital?user=test&password=test");
-            ResultSet result = conn.createStatement().executeQuery("SELECT * FROM medicine");
+            conn = DriverManager.getConnection("jdbc:mysql://hospital.c3zw36cwszgr.us-east-1.rds.amazonaws.com/hospital?user=admin&password=d94cjBx3FKtuN0q7");
+            ResultSet result = getResultFromQuery("SELECT * FROM medicine");
             while (result.next())
             System.out.printf("Name: %s, ID: %d\n", result.getString("name"), result.getInt("medicineID"));
         } catch (SQLException ex) {
@@ -30,7 +31,26 @@ public class CS348 {
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         } catch (Exception e) {
-            System.out.println("bummer");
+            System.out.println(e);
         }
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PrescriptionGUI().setVisible(true);
+//            }
+//        });
+    }
+    
+    public static ResultSet getResultFromQuery(String query) {
+        if (conn != null) {
+            try {
+                return conn.createStatement().executeQuery(query);
+            } catch (SQLException ex){
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+            } 
+        } else
+            System.out.println("Connection to SQL not initialized");
+        return null;
     }
 }

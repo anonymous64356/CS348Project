@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class CS348 {
 
-    private static Connection conn = null;
+    public static Connection conn = null;
     
     public static void main(String[] args) {
         try {
@@ -53,4 +53,5 @@ public class CS348 {
             System.out.println("Connection to SQL not initialized");
         return null;
     }
+    
 }

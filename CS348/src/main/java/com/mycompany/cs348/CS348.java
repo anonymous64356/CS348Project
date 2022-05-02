@@ -23,9 +23,9 @@ public class CS348 {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:mysql://hospital.c3zw36cwszgr.us-east-1.rds.amazonaws.com/hospital?user=admin&password=d94cjBx3FKtuN0q7");
-            ResultSet result = getResultFromQuery("SELECT * FROM medicine");
-            while (result.next())
-            System.out.printf("Name: %s, ID: %d\n", result.getString("name"), result.getInt("medicineID"));
+//            ResultSet result = getResultFromQuery("SELECT * FROM medicine");
+//            while (result.next())
+//            System.out.printf("Name: %s, ID: %d\n", result.getString("name"), result.getInt("medicineID"));
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -33,11 +33,11 @@ public class CS348 {
         } catch (Exception e) {
             System.out.println(e);
         }
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new PrescriptionGUI().setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PrescriptionGUI().setVisible(true);
+            }
+        });
     }
     
     public static ResultSet getResultFromQuery(String query) {

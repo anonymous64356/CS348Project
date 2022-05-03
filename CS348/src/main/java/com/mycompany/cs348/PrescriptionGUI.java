@@ -13,6 +13,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
+import static com.mycompany.cs348.CS348.getResultFromQuery;
+import com.mycompany.cs348.PrescriptionUpdate;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+
+import static com.mycompany.cs348.CS348.getResultFromQuery;
+import com.mycompany.cs348.PrescriptionUpdate;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joseph Murphy
@@ -64,6 +85,8 @@ public class PrescriptionGUI extends javax.swing.JFrame {
         prescriptionSelect = new javax.swing.JComboBox<>();
         refillButton = new javax.swing.JButton();
         prescriptionText = new javax.swing.JLabel();
+        employeeSSNText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,8 +107,8 @@ public class PrescriptionGUI extends javax.swing.JFrame {
         });
 
         prescriptionInfo.setVisible(false);
-        prescriptionInfo.setEditable(false);
         prescriptionInfo.setColumns(20);
+        prescriptionInfo.setEditable(false);
         prescriptionInfo.setRows(5);
         prescriptionInfoPane.setViewportView(prescriptionInfo);
 
@@ -111,19 +134,30 @@ public class PrescriptionGUI extends javax.swing.JFrame {
 
         prescriptionText.setText("Select Prescription:");
 
+        employeeSSNText.setToolTipText("Enter Employee ID");
+
+        jLabel3.setText("Employee SSN:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(prescriptionSelect, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(employeeText, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(prescriptionText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(refillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 38, Short.MAX_VALUE)
+                    .addComponent(prescriptionText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refillButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(employeeText))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(employeeSSNText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(prescriptionInfoPane, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,15 +171,20 @@ public class PrescriptionGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(employeeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(getPrescriptions))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(employeeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(patientText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(getPrescriptions)
+                            .addComponent(employeeSSNText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(prescriptionInfoPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -154,7 +193,7 @@ public class PrescriptionGUI extends javax.swing.JFrame {
                         .addComponent(prescriptionSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(refillButton)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,6 +203,7 @@ public class PrescriptionGUI extends javax.swing.JFrame {
         prescriptionInfo.setText("");
         patientID = patientText.getText();
         doctorID = employeeText.getText();
+        String doctorSSN = employeeSSNText.getText();
         ResultSet result = getResultFromQuery(String.format("SELECT * FROM Patients WHERE Patient_ID = %s", patientID));
         if (result != null) {
             try {
@@ -181,7 +221,7 @@ public class PrescriptionGUI extends javax.swing.JFrame {
             prescriptionInfo.append("Patient with ID " + patientID + " does not exist in our system");
             return;
         }
-        result = getResultFromQuery(String.format("CALL getPatientPrescriptions(%s, %s)", patientID, doctorID));
+        result = getResultFromQuery(String.format("CALL getPatientPrescriptions(%s, %s, %s)", patientID, doctorID, doctorSSN));
         try {
             prescriptionIDs.clear();
             patientResult.clear();
@@ -201,6 +241,13 @@ public class PrescriptionGUI extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(PrescriptionGUI.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                String error = result.getString(1);
+                JOptionPane.showMessageDialog(rootPane, error, "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (SQLException ex2) {
+                Logger.getLogger(PrescriptionGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         prescriptionIDs.add("Create New..."); //select this on wheel to create new prescription
         if (patientResult.isEmpty()) {
@@ -305,10 +352,12 @@ public class PrescriptionGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField employeeSSNText;
     private javax.swing.JTextField employeeText;
     private javax.swing.JButton getPrescriptions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField patientText;
     private javax.swing.JTextArea prescriptionInfo;
     private javax.swing.JScrollPane prescriptionInfoPane;

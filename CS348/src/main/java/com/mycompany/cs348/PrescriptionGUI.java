@@ -65,7 +65,7 @@ public class PrescriptionGUI extends javax.swing.JFrame {
         refillButton = new javax.swing.JButton();
         prescriptionText = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         patientText.setToolTipText("Enter Employee ID");
         patientText.addKeyListener(new java.awt.event.KeyAdapter() {

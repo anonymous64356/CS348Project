@@ -85,8 +85,8 @@ public class PrescriptionGUI extends javax.swing.JFrame {
         prescriptionSelect = new javax.swing.JComboBox<>();
         refillButton = new javax.swing.JButton();
         prescriptionText = new javax.swing.JLabel();
-        employeeSSNText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        employeeSSNText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,9 +134,9 @@ public class PrescriptionGUI extends javax.swing.JFrame {
 
         prescriptionText.setText("Select Prescription:");
 
-        employeeSSNText.setToolTipText("Enter Employee ID");
-
         jLabel3.setText("Employee SSN:");
+
+        employeeSSNText.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,8 +155,8 @@ public class PrescriptionGUI extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(employeeSSNText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
+                            .addComponent(employeeSSNText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(prescriptionInfoPane, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,7 +352,7 @@ public class PrescriptionGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField employeeSSNText;
+    private javax.swing.JPasswordField employeeSSNText;
     private javax.swing.JTextField employeeText;
     private javax.swing.JButton getPrescriptions;
     private javax.swing.JLabel jLabel1;

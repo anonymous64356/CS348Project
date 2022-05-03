@@ -37,9 +37,9 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="employeeSSNText" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="employeeSSNText" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -177,14 +177,14 @@
         <Property name="text" type="java.lang.String" value="Select Prescription:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="employeeSSNText">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Enter Employee ID"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Employee SSN:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="employeeSSNText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
     </Component>
   </SubComponents>

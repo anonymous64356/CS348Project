@@ -429,7 +429,7 @@ public class Patients extends javax.swing.JFrame {
         // TODO add your handling code here:
          try
         {
-           Class.forName("com.mysql.jdbc.Driver"); 
+           Class.forName("com.mysql.cj.jdbc.Driver");
              con = (Connection) DriverManager.getConnection(dataConn,username,password);
              pst = con.prepareStatement("insert into Patients(Patient_ID,Name,DOB,Address,Phone)values" + "(?,?,?,?,?)");
           
